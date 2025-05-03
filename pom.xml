@@ -395,11 +395,7 @@
                 <artifactId>libra-common-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>cn.hfbin</groupId>
-                <artifactId>libra-base-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>cn.hfbin</groupId>
                 <artifactId>libra-tenant-api</artifactId>

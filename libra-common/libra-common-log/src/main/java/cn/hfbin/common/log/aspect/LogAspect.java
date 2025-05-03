@@ -17,8 +17,8 @@
 package cn.hfbin.common.log.aspect;
 
 
-import cn.hfbin.base.client.OptLogServiceClient;
-import cn.hfbin.base.entity.OptLog;
+//import cn.hfbin.base.client.OptLogServiceClient;
+//import cn.hfbin.base.entity.OptLog;
 import cn.hfbin.common.core.api.ResponseData;
 import cn.hfbin.common.core.constant.ConfigValueConstant;
 import cn.hfbin.common.core.context.HeaderCode;
@@ -79,9 +79,9 @@ public class LogAspect {
     @Value("${" + ConfigValueConstant.LOG_ENABLED + ":true}")
     private boolean logEnabled;
 
-    @Lazy
-    @Autowired
-    private OptLogServiceClient optLogServiceClient;
+//    @Lazy
+//    @Autowired
+//    private OptLogServiceClient optLogServiceClient;
 
 
     /**
@@ -226,9 +226,9 @@ public class LogAspect {
     public void saveLog(OptLogDto optLogDto) {
         if(dbEnabled){
             log.info("已开启日志入库：{}", optLogDto);
-            OptLog optLog = new OptLog();
-            BeanUtils.copyProperties(optLogDto, optLog);
-            optLogServiceClient.save(optLog);
+//            OptLog optLog = new OptLog();
+//            BeanUtils.copyProperties(optLogDto, optLog);
+//            optLogServiceClient.save(optLog);
         }else {
             log.warn("未开启日志入库：{}", optLogDto);
         }

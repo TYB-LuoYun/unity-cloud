@@ -29,7 +29,6 @@
 
     <modules>
         <module>libra-ucpm</module>
-        <module>libra-base</module>
         <module>libra-gen</module>
         <module>libra-tenant</module>
     </modules>

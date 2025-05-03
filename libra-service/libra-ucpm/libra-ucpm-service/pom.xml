@@ -40,10 +40,7 @@
 			<groupId>cn.hfbin</groupId>
 			<artifactId>libra-tenant-api</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>cn.hfbin</groupId>
-			<artifactId>libra-base-api</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>cn.hfbin</groupId>
 			<artifactId>libra-plugin-service</artifactId>
