@@ -17,6 +17,8 @@
 package cn.hfbin.ucpm.service.impl;
 
 
+import cn.hfbin.ucpm.api.TrMenuTemplateApiService;
+import cn.hfbin.ucpm.api.TrTenantApiService;
 import cn.hfbin.ucpm.entity.Menu;
 import cn.hfbin.ucpm.entity.MenuInterfaceRef;
 import cn.hfbin.ucpm.enums.UcPmExceptionCode;
@@ -26,13 +28,13 @@ import cn.hfbin.ucpm.mapper.MenuMapper;
 import cn.hfbin.ucpm.params.MenuInterfaceParams;
 import cn.hfbin.ucpm.params.MenuParams;
 import cn.hfbin.ucpm.service.MenuService;
+import cn.hfbin.ucpm.service.TrTenantService;
 import cn.hfbin.ucpm.vo.MenuInterfaceVo;
 import cn.hfbin.ucpm.vo.TreeVo;
 import cn.hfbin.ucpm.vo.RouterVo;
 import cn.hfbin.common.core.context.SpringContextUtils;
 import cn.hfbin.common.core.exception.LibraException;
 import cn.hfbin.common.core.utils.FeignResponseUtil;
-import cn.hfbin.tenant.client.TrTenantServiceClient;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -59,7 +61,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     private MenuInterfaceRefMapper menuInterfaceRefMapper;
 
     @Autowired
-    private TrTenantServiceClient trTenantServiceClient;
+    private TrTenantService trTenantServiceClient;
 
     /**
      * 分页查询
@@ -141,7 +143,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public List<TreeVo> tree(MenuParams menuParams) {
         // 查询租户已经开通的菜单权限
-        List<Long> menuIds = FeignResponseUtil.get(trTenantServiceClient.selectMenu(SpringContextUtils.getTenantCode()));
+        List<Long> menuIds =  trTenantServiceClient.selectMenu(SpringContextUtils.getTenantCode());
         if(CollectionUtil.isEmpty(menuIds)){
             return null;
         }

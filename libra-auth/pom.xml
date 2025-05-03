@@ -26,10 +26,7 @@
 			<groupId>cn.hfbin</groupId>
 			<artifactId>libra-ucpm-api</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>cn.hfbin</groupId>
-			<artifactId>libra-tenant-api</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>cn.hfbin</groupId>
 			<artifactId>libra-common-security</artifactId>

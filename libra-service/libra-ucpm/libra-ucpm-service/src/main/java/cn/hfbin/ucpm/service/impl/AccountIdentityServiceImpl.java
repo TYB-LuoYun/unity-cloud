@@ -16,7 +16,6 @@ import cn.hfbin.common.core.context.SpringContextUtils;
 import cn.hfbin.common.core.exception.CommonExceptionCode;
 import cn.hfbin.common.core.exception.LibraException;
 import cn.hfbin.common.core.utils.FeignResponseUtil;
-import cn.hfbin.tenant.client.TrTenantServiceClient;
 import cn.hfbin.ucpm.strategy.identity.IdentityContext;
 import cn.hfbin.ucpm.vo.*;
 import cn.hutool.core.collection.CollectionUtil;
@@ -48,7 +47,7 @@ public class AccountIdentityServiceImpl implements AccountIdentityService {
     private RelationRoleService relationRoleService;
 
     @Autowired
-    private TrTenantServiceClient trTenantServiceClient;
+    private TrTenantService  trTenantServiceClient;
 
     @Autowired
     private InterfaceService interfaceService;
@@ -160,7 +159,7 @@ public class AccountIdentityServiceImpl implements AccountIdentityService {
         // 如果开启了多租户功能则需要获取此租户开工的菜单资源
         if(openTenant){
             // 查询租户已经开通的菜单权限
-            List<Long> menuIds = FeignResponseUtil.get(trTenantServiceClient.selectMenu(SpringContextUtils.getTenantCode()));
+            List<Long> menuIds = trTenantServiceClient.selectMenu(SpringContextUtils.getTenantCode());
             if(CollectionUtil.isEmpty(menuIds)){
                 throw new LibraException(CommonExceptionCode.TENANT_AUTH_NULL);
             }
