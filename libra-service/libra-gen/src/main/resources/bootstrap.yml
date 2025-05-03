@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: libra-gen
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      # nacos 地址
+      server-addr: http://localhost:8848
+      discovery:
+        namespace: ${spring.profiles.active}
+
+# 数据库密码加密password
+jasypt:
+  encryptor:
+    # 兼容问题处理，需要将此配置放在bootstrap.yml下
+    bootstrap: false
+    password: libra-demo
