@@ -17,9 +17,11 @@
 package cn.hfbin.common.core.context;
 
 import cn.hfbin.common.core.constant.SpecialCharacterPool;
+import cn.hfbin.common.core.enums.IdentityEnum;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.map.MapUtil;
 import com.alibaba.ttl.TransmittableThreadLocal;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -142,7 +144,8 @@ public class SpringContextUtils implements ApplicationContextAware {
     public static Long getIdentityId() {
         HttpServletRequest httpServletRequest = getHttpServletRequest();
         String identityId = Objects.isNull(httpServletRequest) ? get(HeaderCode.IDENTITY_ID) : httpServletRequest.getHeader(HeaderCode.IDENTITY_ID);
-        return null == identityId ? -1 :  Long.parseLong(identityId);
+        //默认系统租户
+        return null == identityId ? 10 :  Long.parseLong(identityId);
     }
 
     /**
@@ -192,7 +195,11 @@ public class SpringContextUtils implements ApplicationContextAware {
      */
     public static Integer getIdentityType() {
         HttpServletRequest httpServletRequest = getHttpServletRequest();
-        return Integer.valueOf(Objects.isNull(httpServletRequest) ? get(HeaderCode.IDENTITY_TYPE) : httpServletRequest.getHeader(HeaderCode.IDENTITY_TYPE));
+        String res = Objects.isNull(httpServletRequest)  ? get(HeaderCode.IDENTITY_TYPE) : httpServletRequest.getHeader(HeaderCode.IDENTITY_TYPE);
+        if(StringUtils.isBlank(res)){
+            return IdentityEnum.EMPLOYEE.getCode();
+        }
+        return Integer.valueOf(res);
     }
 
     /**
@@ -210,7 +217,11 @@ public class SpringContextUtils implements ApplicationContextAware {
      */
     public static String getTenantCode(){
         HttpServletRequest httpServletRequest = getHttpServletRequest();
-        return String.valueOf(Objects.isNull(httpServletRequest) ? get(HeaderCode.TENANT_CODE) : httpServletRequest.getHeader(HeaderCode.TENANT_CODE));
+        String s = Objects.isNull(httpServletRequest) ? get(HeaderCode.TENANT_CODE) : httpServletRequest.getHeader(HeaderCode.TENANT_CODE);
+        if(StringUtils.isBlank(s)){
+            return  "AOLIN";//默认租户系统
+        }
+        return s;
     }
 
     /**
@@ -219,7 +230,11 @@ public class SpringContextUtils implements ApplicationContextAware {
      */
     public static String getClientCode(){
         HttpServletRequest httpServletRequest = getHttpServletRequest();
-        return String.valueOf(Objects.isNull(httpServletRequest) ? get(HeaderCode.CLIENT_CODE) : httpServletRequest.getHeader(HeaderCode.CLIENT_CODE));
+        String s =Objects.isNull(httpServletRequest) ? get(HeaderCode.CLIENT_CODE) : httpServletRequest.getHeader(HeaderCode.CLIENT_CODE);
+        if(StringUtils.isBlank(s)){
+            return "pc-platform";
+        }
+        return s;
     }
 
     /**
