@@ -29,7 +29,7 @@ public interface GeneratorMapper{
 	 * @param dsName 数据源名称
 	 * @return
 	 */
-	@DS("#header")
+	@DS("#dsName")
 	Map<String, String> queryTable(@Param("tableName") String tableName, String dsName);
 
 	/**
@@ -38,7 +38,7 @@ public interface GeneratorMapper{
 	 * @param dsName 数据源名称
 	 * @return
 	 */
-	@DS("#header")
+	@DS("#dsName")
 	List<Map<String, String>> queryColumns(@Param("tableName") String tableName, String dsName);
 
 }
