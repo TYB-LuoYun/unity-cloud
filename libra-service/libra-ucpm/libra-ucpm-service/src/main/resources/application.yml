@@ -13,7 +13,7 @@ spring:
 
 libra:
   mybatisPlus:
-    ignoreTable: ucpm_datasource_conf,ucpm_interface,ucpm_menu,ucpm_menu_interface_ref,ucpm_version,ucpm_client
+    ignoreTable: ucpm_datasource_conf,ucpm_interface,ucpm_menu,ucpm_menu_interface_ref,ucpm_version,ucpm_client,base_opt_log,tr_menu_template,tr_menu_template_ref
     openTenant: true
 
 logging:
