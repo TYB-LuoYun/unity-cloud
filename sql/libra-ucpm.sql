@@ -1,3 +1,307 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 自己
+ Source Server Type    : MySQL
+ Source Server Version : 50730
+ Source Host           : localhost:3306
+ Source Schema         : libra-ucpm
+
+ Target Server Type    : MySQL
+ Target Server Version : 50730
+ File Encoding         : 65001
+
+ Date: 08/05/2025 17:12:49
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for base_opt_log
+-- ----------------------------
+DROP TABLE IF EXISTS `base_opt_log`;
+CREATE TABLE `base_opt_log`  (
+  `id` bigint(20) NOT NULL COMMENT '主键',
+  `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `opt_type` tinyint(1) NULL DEFAULT NULL COMMENT '日志类型',
+  `opt_behavior` tinyint(1) NULL DEFAULT NULL COMMENT '操作行为',
+  `ip` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT 'IP',
+  `location` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT 'IP解析地址',
+  `client_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户端编码',
+  `req_url` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '请求地址',
+  `user_agent` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '浏览器信息',
+  `http_method` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '请求类型(GET:GET请求;POST:POST请求;PUT:PUT请求;DELETE:DELETE请求;等)',
+  `req_param` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作请求参数',
+  `res_info` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作响应结果',
+  `res_status` tinyint(1) NULL DEFAULT NULL COMMENT '响应状态',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '描述',
+  `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '租户编码',
+  `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统操作日志表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of base_opt_log
+-- ----------------------------
+INSERT INTO `base_opt_log` VALUES (1918263443975831554, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'feign.FeignException$ServiceUnavailable: [503] during [GET] to [http://libra-ucpm/ucpm/client/select-by-code?clientCode=pc-tenant] [ClientServiceClient#selectByCode(String)]: [Load balancer does not contain an instance for the service libra-ucpm]\r\n	at feign.FeignException.serverErrorStatus(FeignException.java:237)\r\n	at feign.FeignException.errorStatus(FeignException.java:180)\r\n	at feign.FeignException.errorStatus(FeignException.java:169)\r\n	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:92)\r\n	at feign.AsyncResponseHandler.handleResponse(AsyncResponseHandler.java:96)\r\n	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:138)\r\n	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)\r\n	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:100)\r\n	at com.sun.proxy.$Proxy149.selectByCode(Unknown Source)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.clientCheck(AbstractTokenGranter.java:125)\r\n	at cn.hf', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:16:58');
+INSERT INTO `base_opt_log` VALUES (1918263498359177218, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'feign.FeignException$ServiceUnavailable: [503] during [GET] to [http://libra-ucpm/ucpm/client/select-by-code?clientCode=pc-tenant] [ClientServiceClient#selectByCode(String)]: [Load balancer does not contain an instance for the service libra-ucpm]\r\n	at feign.FeignException.serverErrorStatus(FeignException.java:237)\r\n	at feign.FeignException.errorStatus(FeignException.java:180)\r\n	at feign.FeignException.errorStatus(FeignException.java:169)\r\n	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:92)\r\n	at feign.AsyncResponseHandler.handleResponse(AsyncResponseHandler.java:96)\r\n	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:138)\r\n	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)\r\n	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:100)\r\n	at com.sun.proxy.$Proxy149.selectByCode(Unknown Source)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.clientCheck(AbstractTokenGranter.java:125)\r\n	at cn.hf', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:17:12');
+INSERT INTO `base_opt_log` VALUES (1918263536728670210, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'feign.FeignException$ServiceUnavailable: [503] during [GET] to [http://libra-ucpm/ucpm/client/select-by-code?clientCode=pc-tenant] [ClientServiceClient#selectByCode(String)]: [Load balancer does not contain an instance for the service libra-ucpm]\r\n	at feign.FeignException.serverErrorStatus(FeignException.java:237)\r\n	at feign.FeignException.errorStatus(FeignException.java:180)\r\n	at feign.FeignException.errorStatus(FeignException.java:169)\r\n	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:92)\r\n	at feign.AsyncResponseHandler.handleResponse(AsyncResponseHandler.java:96)\r\n	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:138)\r\n	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)\r\n	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:100)\r\n	at com.sun.proxy.$Proxy149.selectByCode(Unknown Source)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.clientCheck(AbstractTokenGranter.java:125)\r\n	at cn.hf', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:17:21');
+INSERT INTO `base_opt_log` VALUES (1918263610493894658, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'feign.FeignException$ServiceUnavailable: [503] during [GET] to [http://libra-ucpm/ucpm/client/select-by-code?clientCode=pc-tenant] [ClientServiceClient#selectByCode(String)]: [Load balancer does not contain an instance for the service libra-ucpm]\r\n	at feign.FeignException.serverErrorStatus(FeignException.java:237)\r\n	at feign.FeignException.errorStatus(FeignException.java:180)\r\n	at feign.FeignException.errorStatus(FeignException.java:169)\r\n	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:92)\r\n	at feign.AsyncResponseHandler.handleResponse(AsyncResponseHandler.java:96)\r\n	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:138)\r\n	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)\r\n	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:100)\r\n	at com.sun.proxy.$Proxy149.selectByCode(Unknown Source)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.clientCheck(AbstractTokenGranter.java:125)\r\n	at cn.hf', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:17:38');
+INSERT INTO `base_opt_log` VALUES (1918264000010518530, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'feign.FeignException$ServiceUnavailable: [503] during [GET] to [http://libra-ucpm/ucpm/client/select-by-code?clientCode=pc-tenant] [ClientServiceClient#selectByCode(String)]: [Load balancer does not contain an instance for the service libra-ucpm]\r\n	at feign.FeignException.serverErrorStatus(FeignException.java:237)\r\n	at feign.FeignException.errorStatus(FeignException.java:180)\r\n	at feign.FeignException.errorStatus(FeignException.java:169)\r\n	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:92)\r\n	at feign.AsyncResponseHandler.handleResponse(AsyncResponseHandler.java:96)\r\n	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:138)\r\n	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)\r\n	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:100)\r\n	at com.sun.proxy.$Proxy149.selectByCode(Unknown Source)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.clientCheck(AbstractTokenGranter.java:125)\r\n	at cn.hf', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:19:10');
+INSERT INTO `base_opt_log` VALUES (1918264203954356225, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'feign.FeignException$ServiceUnavailable: [503] during [GET] to [http://libra-ucpm/ucpm/client/select-by-code?clientCode=pc-tenant] [ClientServiceClient#selectByCode(String)]: [Load balancer does not contain an instance for the service libra-ucpm]\r\n	at feign.FeignException.serverErrorStatus(FeignException.java:237)\r\n	at feign.FeignException.errorStatus(FeignException.java:180)\r\n	at feign.FeignException.errorStatus(FeignException.java:169)\r\n	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:92)\r\n	at feign.AsyncResponseHandler.handleResponse(AsyncResponseHandler.java:96)\r\n	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:138)\r\n	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)\r\n	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:100)\r\n	at com.sun.proxy.$Proxy149.selectByCode(Unknown Source)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.clientCheck(AbstractTokenGranter.java:125)\r\n	at cn.hf', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:20:00');
+INSERT INTO `base_opt_log` VALUES (1918264490941218818, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'feign.FeignException$ServiceUnavailable: [503] during [GET] to [http://libra-tenant/tr/tenant/select-by-code?tenantCode=AOLIN] [TrTenantServiceClient#selectByCode(String)]: [Load balancer does not contain an instance for the service libra-tenant]\r\n	at feign.FeignException.serverErrorStatus(FeignException.java:237)\r\n	at feign.FeignException.errorStatus(FeignException.java:180)\r\n	at feign.FeignException.errorStatus(FeignException.java:169)\r\n	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:92)\r\n	at feign.AsyncResponseHandler.handleResponse(AsyncResponseHandler.java:96)\r\n	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:138)\r\n	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)\r\n	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:100)\r\n	at com.sun.proxy.$Proxy150.selectByCode(Unknown Source)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.tenantCheck(AbstractTokenGranter.java:133)\r\n	at cn.hf', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:21:06');
+INSERT INTO `base_opt_log` VALUES (1918264538550763522, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'feign.FeignException$ServiceUnavailable: [503] during [GET] to [http://libra-tenant/tr/tenant/select-by-code?tenantCode=AOLIN] [TrTenantServiceClient#selectByCode(String)]: [Load balancer does not contain an instance for the service libra-tenant]\r\n	at feign.FeignException.serverErrorStatus(FeignException.java:237)\r\n	at feign.FeignException.errorStatus(FeignException.java:180)\r\n	at feign.FeignException.errorStatus(FeignException.java:169)\r\n	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:92)\r\n	at feign.AsyncResponseHandler.handleResponse(AsyncResponseHandler.java:96)\r\n	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:138)\r\n	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:89)\r\n	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:100)\r\n	at com.sun.proxy.$Proxy150.selectByCode(Unknown Source)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.tenantCheck(AbstractTokenGranter.java:133)\r\n	at cn.hf', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:21:20');
+INSERT INTO `base_opt_log` VALUES (1918265351801143298, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', 'cn.hfbin.common.core.exception.LibraException\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.tenantCheck(AbstractTokenGranter.java:138)\r\n	at cn.hfbin.auth.provider.token.AbstractTokenGranter.publicCheck(AbstractTokenGranter.java:70)\r\n	at cn.hfbin.auth.provider.token.PwdCaptchaStrategy.grant(PwdCaptchaStrategy.java:28)\r\n	at cn.hfbin.auth.controller.AuthController.login(AuthController.java:49)\r\n	at cn.hfbin.auth.controller.AuthController$$FastClassBySpringCGLIB$$c5b3e238.invoke(<generated>)\r\n	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)\r\n	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:779)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\r\n	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750)\r\n	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThro', 2, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:24:31');
+INSERT INTO `base_opt_log` VALUES (1918265496538185729, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', '{\"code\":200,\"data\":{\"expiration\":\"2025-05-03T07:25:04.589\",\"expire\":43200,\"identityId\":1428975711003615234,\"refreshToken\":\"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiIxNDI4OTc1NzExMDAzNjE1MjM0IiwiaWF0IjoxNzQ2MTg1MTA1LCJuYmYiOjE3NDYxODUxMDUsImV4cCI6MTc0NjIyODMwNX0.XA00491D60mYleFLSa52OTIRPy92cH6RH03AsG4Jc5s\",\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50SWQiOiIxNDI4OTc1NzExMDAzNjE1MjMzIiwiaWRlbnRpdHlUeXBlIjoiMTAiLCJkZXB0SWQiOiIxNDI4OTc1NzEwNzgxMzE3MTIxIiwidGVuYW50Q29kZSI6IkFPTElOIiwiZGF0YVNjb3BlIjoiMSIsInVzZXJJZCI6IjE0Mjg5NzU3MTEwMDM2MTUyMzQiLCJkZXB0Q29kZSI6IkEwMDEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzQ2MTg1MTA0LCJuYmYiOjE3NDYxODUxMDQsImV4cCI6MTc0NjIyODMwNH0.tKtf_dvivdWU9MNjVGVxuj_JdkzO1rkT1DmYQvMI5pI\"},\"msg\":\"SUCESS\",\"success\":true}', 1, '认证服务-登录接口', 'AOLIN', -1, '2025-05-02 19:25:02');
+INSERT INTO `base_opt_log` VALUES (1918265723886239746, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/list', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[{}]', '{\"code\":200,\"data\":[{\"bizType\":1,\"description\":\"首席COO\",\"id\":1429016947643195393,\"name\":\"首席COO\"}],\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-查询', 'AOLIN', 1428975711003615234, '2025-05-02 19:26:02');
+INSERT INTO `base_opt_log` VALUES (1918265723886239747, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/depart/tree', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[{}]', '{\"code\":200,\"data\":[{\"children\":[{\"deptCode\":\"A001A001\",\"deptName\":\"研发部门\",\"deptType\":10,\"description\":\"123123\",\"id\":1430028613944102913,\"label\":\"研发部门\",\"parentId\":1428975710781317121},{\"deptCode\":\"A001A002\",\"deptName\":\"测试部门\",\"deptType\":10,\"description\":\"1233123\",\"id\":1430025357956239362,\"label\":\"测试部门\",\"parentId\":1428975710781317121}],\"deptCode\":\"A001\",\"deptName\":\"奥林·云溪海棠\",\"deptType\":1,\"id\":1428975710781317121,\"label\":\"奥林·云溪海棠\",\"parentId\":0}],\"msg\":\"SUCESS\",\"success\":true}', 1, '部门管理-部门列表（树结构）', 'AOLIN', 1428975711003615234, '2025-05-02 19:26:02');
+INSERT INTO `base_opt_log` VALUES (1918265724003680257, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/identity/employee/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"accountId\":1432590772406444033,\"cardType\":0,\"createTime\":\"2021-08-31T14:27:11\",\"deptId\":1430028613944102913,\"deptName\":\"研发部门\",\"entryDate\":\"2021-08-31T14:26:24\",\"id\":1432590772469358593,\"mobile\":\"15240433444\",\"name\":\"kenan\",\"positionId\":1429016947643195393,\"positionName\":\"首席COO\",\"positionStatus\":0,\"roleIds\":\"1430296293859143681,1428975710869397505\",\"roleListIds\":[1430296293859143681,1428975710869397505],\"roleNames\":\"财务/管理员\",\"sex\":0,\"status\":1,\"systemDefault\":0,\"username\":\"kv\",\"workNo\":\"000001\"},{\"accountId\":1430029438594600961,\"cardType\":0,\"createTime\":\"2021-08-24T12:49:22\",\"deptId\":1430025357956239362,\"deptName\":\"测试部门\",\"entryDate\":\"2021-08-24T12:49:00\",\"id\":1430029438661709825,\"mobile\":\"13232323232\",\"name\":\"jack\",\"positionId\":1429016947643195393,\"positionName\":\"首席COO\",\"positionStatus\":0,\"roleIds\":\"1428975710869397505\",\"roleListIds\":[1428975710869397505],\"roleNames\":\"管理员\",\"sex\":0,\"status\":1,\"systemDefault\":0,\"username\":\"hfb\",\"workNo\":\"000002\"},{\"accountId\":1428975711003615233,\"avatar\":\"http://img.jj20.com/up/allimg/tx20/12041101541773.jpg\",\"birthday\":\"2021-08-21T00:00:00\",\"createTime\":\"2021-08-21T15:02:13\",\"deptId\":1428975710781317121,\"deptName\":\"奥林·云溪海棠\",\"entryDate\":\"2021-08-21T15:02:13\",\"id\":1428975711003615234,\"mobile\":\"15240771718\",\"name\":\"管理员\",\"positionStatus\":0,\"roleIds\":\"1428975710869397505\",\"roleListIds\":[1428975710869397505],\"roleNames\":\"管理员\",\"status\":1,\"systemDefault\":1,\"username\":\"admin\",\"workNo\":\"000000\"}],\"searchCount\":true,\"size\":10,\"total\":3},\"msg\":\"SUCESS\",\"success\":true}', 1, '员工管理-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 19:26:02');
+INSERT INTO `base_opt_log` VALUES (1918266207564988417, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-21T17:46:05\",\"delFlag\":0,\"description\":\"首席COO\",\"enabled\":1,\"id\":1429016947643195393,\"name\":\"首席COO\",\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-30T18:25:55\"}],\"searchCount\":true,\"size\":10,\"total\":1},\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 19:27:58');
+INSERT INTO `base_opt_log` VALUES (1918266345033302017, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-21T17:46:05\",\"delFlag\":0,\"description\":\"首席COO\",\"enabled\":1,\"id\":1429016947643195393,\"name\":\"首席COO\",\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-30T18:25:55\"}],\"searchCount\":true,\"size\":10,\"total\":1},\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 19:28:30');
+INSERT INTO `base_opt_log` VALUES (1918266506803412994, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/depart/tree', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[{}]', '{\"code\":200,\"data\":[{\"children\":[{\"deptCode\":\"A001A001\",\"deptName\":\"研发部门\",\"deptType\":10,\"description\":\"123123\",\"id\":1430028613944102913,\"label\":\"研发部门\",\"parentId\":1428975710781317121},{\"deptCode\":\"A001A002\",\"deptName\":\"测试部门\",\"deptType\":10,\"description\":\"1233123\",\"id\":1430025357956239362,\"label\":\"测试部门\",\"parentId\":1428975710781317121}],\"deptCode\":\"A001\",\"deptName\":\"奥林·云溪海棠\",\"deptType\":1,\"id\":1428975710781317121,\"label\":\"奥林·云溪海棠\",\"parentId\":0}],\"msg\":\"SUCESS\",\"success\":true}', 1, '部门管理-部门列表（树结构）', 'AOLIN', 1428975711003615234, '2025-05-02 19:29:09');
+INSERT INTO `base_opt_log` VALUES (1918266506803412995, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/list', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[{}]', '{\"code\":200,\"data\":[{\"bizType\":1,\"description\":\"首席COO\",\"id\":1429016947643195393,\"name\":\"首席COO\"}],\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-查询', 'AOLIN', 1428975711003615234, '2025-05-02 19:29:09');
+INSERT INTO `base_opt_log` VALUES (1918266508023955457, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/identity/employee/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"accountId\":1432590772406444033,\"cardType\":0,\"createTime\":\"2021-08-31T14:27:11\",\"deptId\":1430028613944102913,\"deptName\":\"研发部门\",\"entryDate\":\"2021-08-31T14:26:24\",\"id\":1432590772469358593,\"mobile\":\"15240433444\",\"name\":\"kenan\",\"positionId\":1429016947643195393,\"positionName\":\"首席COO\",\"positionStatus\":0,\"roleIds\":\"1428975710869397505,1430296293859143681\",\"roleListIds\":[1428975710869397505,1430296293859143681],\"roleNames\":\"管理员/财务\",\"sex\":0,\"status\":1,\"systemDefault\":0,\"username\":\"kv\",\"workNo\":\"000001\"},{\"accountId\":1430029438594600961,\"cardType\":0,\"createTime\":\"2021-08-24T12:49:22\",\"deptId\":1430025357956239362,\"deptName\":\"测试部门\",\"entryDate\":\"2021-08-24T12:49:00\",\"id\":1430029438661709825,\"mobile\":\"13232323232\",\"name\":\"jack\",\"positionId\":1429016947643195393,\"positionName\":\"首席COO\",\"positionStatus\":0,\"roleIds\":\"1428975710869397505\",\"roleListIds\":[1428975710869397505],\"roleNames\":\"管理员\",\"sex\":0,\"status\":1,\"systemDefault\":0,\"username\":\"hfb\",\"workNo\":\"000002\"},{\"accountId\":1428975711003615233,\"avatar\":\"http://img.jj20.com/up/allimg/tx20/12041101541773.jpg\",\"birthday\":\"2021-08-21T00:00:00\",\"createTime\":\"2021-08-21T15:02:13\",\"deptId\":1428975710781317121,\"deptName\":\"奥林·云溪海棠\",\"entryDate\":\"2021-08-21T15:02:13\",\"id\":1428975711003615234,\"mobile\":\"15240771718\",\"name\":\"管理员\",\"positionStatus\":0,\"roleIds\":\"1428975710869397505\",\"roleListIds\":[1428975710869397505],\"roleNames\":\"管理员\",\"status\":1,\"systemDefault\":1,\"username\":\"admin\",\"workNo\":\"000000\"}],\"searchCount\":true,\"size\":10,\"total\":3},\"msg\":\"SUCESS\",\"success\":true}', 1, '员工管理-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 19:29:09');
+INSERT INTO `base_opt_log` VALUES (1918266668409946114, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/depart/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-24T12:33:09\",\"delFlag\":0,\"deptCode\":\"A001A002\",\"deptName\":\"测试部门\",\"deptType\":10,\"description\":\"1233123\",\"enabled\":1,\"id\":1430025357956239362,\"parentId\":1428975710781317121,\"parentIds\":\"奥林·云溪海棠\",\"sortNo\":0,\"systemDefault\":0,\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-31T14:27:43\"},{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-24T12:46:05\",\"delFlag\":0,\"deptCode\":\"A001A001\",\"deptName\":\"研发部门\",\"deptType\":10,\"description\":\"123123\",\"enabled\":1,\"id\":1430028613944102913,\"parentId\":1428975710781317121,\"parentIds\":\"奥林·云溪海棠\",\"sortNo\":0,\"systemDefault\":0,\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-24T16:32:50\"},{\"bizType\":1,\"createBy\":1422081192391876609,\"createTime\":\"2021-08-21T15:02:13\",\"delFlag\":0,\"deptCode\":\"A001\",\"deptName\":\"奥林·云溪海棠\",\"deptType\":1,\"enabled\":1,\"id\":1428975710781317121,\"parentId\":0,\"parentIds\":\"根节点\",\"sortNo\":0,\"systemDefault\":1,\"tenantCode\":\"AOLIN\",\"updateTime\":\"2021-08-21T15:02:13\"}],\"searchCount\":true,\"size\":10,\"total\":3},\"msg\":\"SUCESS\",\"success\":true}', 1, '部门管理-部门列表', 'AOLIN', 1428975711003615234, '2025-05-02 19:29:48');
+INSERT INTO `base_opt_log` VALUES (1918266692581720065, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/depart/tree', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[{}]', '{\"code\":200,\"data\":[{\"children\":[{\"deptCode\":\"A001A001\",\"deptName\":\"研发部门\",\"deptType\":10,\"description\":\"123123\",\"id\":1430028613944102913,\"label\":\"研发部门\",\"parentId\":1428975710781317121},{\"deptCode\":\"A001A002\",\"deptName\":\"测试部门\",\"deptType\":10,\"description\":\"1233123\",\"id\":1430025357956239362,\"label\":\"测试部门\",\"parentId\":1428975710781317121}],\"deptCode\":\"A001\",\"deptName\":\"奥林·云溪海棠\",\"deptType\":1,\"id\":1428975710781317121,\"label\":\"奥林·云溪海棠\",\"parentId\":0}],\"msg\":\"SUCESS\",\"success\":true}', 1, '部门管理-部门列表（树结构）', 'AOLIN', 1428975711003615234, '2025-05-02 19:29:53');
+INSERT INTO `base_opt_log` VALUES (1918266692669800450, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/depart/1430025357956239362', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1430025357956239362]', '{\"code\":200,\"data\":{\"deptCode\":\"A001A002\",\"deptName\":\"测试部门\",\"deptType\":10,\"description\":\"1233123\",\"id\":1430025357956239362,\"parentDeptName\":\"奥林·云溪海棠\",\"parentId\":1428975710781317121},\"msg\":\"SUCESS\",\"success\":true}', 1, '部门管理-根据id查询', 'AOLIN', 1428975711003615234, '2025-05-02 19:29:53');
+INSERT INTO `base_opt_log` VALUES (1918266891660165122, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/depart/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-24T12:33:09\",\"delFlag\":0,\"deptCode\":\"A001A002\",\"deptName\":\"测试部门\",\"deptType\":10,\"description\":\"1233123\",\"enabled\":1,\"id\":1430025357956239362,\"parentId\":1428975710781317121,\"parentIds\":\"奥林·云溪海棠\",\"sortNo\":0,\"systemDefault\":0,\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-31T14:27:43\"},{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-24T12:46:05\",\"delFlag\":0,\"deptCode\":\"A001A001\",\"deptName\":\"研发部门\",\"deptType\":10,\"description\":\"123123\",\"enabled\":1,\"id\":1430028613944102913,\"parentId\":1428975710781317121,\"parentIds\":\"奥林·云溪海棠\",\"sortNo\":0,\"systemDefault\":0,\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-24T16:32:50\"},{\"bizType\":1,\"createBy\":1422081192391876609,\"createTime\":\"2021-08-21T15:02:13\",\"delFlag\":0,\"deptCode\":\"A001\",\"deptName\":\"奥林·云溪海棠\",\"deptType\":1,\"enabled\":1,\"id\":1428975710781317121,\"parentId\":0,\"parentIds\":\"根节点\",\"sortNo\":0,\"systemDefault\":1,\"tenantCode\":\"AOLIN\",\"updateTime\":\"2021-08-21T15:02:13\"}],\"searchCount\":true,\"size\":10,\"total\":3},\"msg\":\"SUCESS\",\"success\":true}', 1, '部门管理-部门列表', 'AOLIN', 1428975711003615234, '2025-05-02 19:30:41');
+INSERT INTO `base_opt_log` VALUES (1918266919111884802, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/depart/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-24T12:33:09\",\"delFlag\":0,\"deptCode\":\"A001A002\",\"deptName\":\"测试部门\",\"deptType\":10,\"description\":\"1233123\",\"enabled\":1,\"id\":1430025357956239362,\"parentId\":1428975710781317121,\"parentIds\":\"奥林·云溪海棠\",\"sortNo\":0,\"systemDefault\":0,\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-31T14:27:43\"},{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-24T12:46:05\",\"delFlag\":0,\"deptCode\":\"A001A001\",\"deptName\":\"研发部门\",\"deptType\":10,\"description\":\"123123\",\"enabled\":1,\"id\":1430028613944102913,\"parentId\":1428975710781317121,\"parentIds\":\"奥林·云溪海棠\",\"sortNo\":0,\"systemDefault\":0,\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-24T16:32:50\"},{\"bizType\":1,\"createBy\":1422081192391876609,\"createTime\":\"2021-08-21T15:02:13\",\"delFlag\":0,\"deptCode\":\"A001\",\"deptName\":\"奥林·云溪海棠\",\"deptType\":1,\"enabled\":1,\"id\":1428975710781317121,\"parentId\":0,\"parentIds\":\"根节点\",\"sortNo\":0,\"systemDefault\":1,\"tenantCode\":\"AOLIN\",\"updateTime\":\"2021-08-21T15:02:13\"}],\"searchCount\":true,\"size\":10,\"total\":3},\"msg\":\"SUCESS\",\"success\":true}', 1, '部门管理-部门列表', 'AOLIN', 1428975711003615234, '2025-05-02 19:30:47');
+INSERT INTO `base_opt_log` VALUES (1918285653364965378, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-21T17:46:05\",\"delFlag\":0,\"description\":\"首席COO\",\"enabled\":1,\"id\":1429016947643195393,\"name\":\"首席COO\",\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-30T18:25:55\"}],\"searchCount\":true,\"size\":10,\"total\":1},\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 20:45:10');
+INSERT INTO `base_opt_log` VALUES (1918292497647009794, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-21T17:46:05\",\"delFlag\":0,\"description\":\"首席COO\",\"enabled\":1,\"id\":1429016947643195393,\"name\":\"首席COO\",\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-30T18:25:55\"}],\"searchCount\":true,\"size\":10,\"total\":1},\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 21:12:25');
+INSERT INTO `base_opt_log` VALUES (1918292532673642498, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-21T17:46:05\",\"delFlag\":0,\"description\":\"首席COO\",\"enabled\":1,\"id\":1429016947643195393,\"name\":\"首席COO\",\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-30T18:25:55\"}],\"searchCount\":true,\"size\":10,\"total\":1},\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 21:12:33');
+INSERT INTO `base_opt_log` VALUES (1918292596343177218, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-21T17:46:05\",\"delFlag\":0,\"description\":\"首席COO\",\"enabled\":1,\"id\":1429016947643195393,\"name\":\"首席COO\",\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-30T18:25:55\"}],\"searchCount\":true,\"size\":10,\"total\":1},\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 21:12:49');
+INSERT INTO `base_opt_log` VALUES (1918292613510463490, 'admin', 1, 30, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/ucpm/position/page', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'GET', '[1,10,{}]', '{\"code\":200,\"data\":{\"current\":1,\"optimizeCountSql\":true,\"orders\":[],\"pages\":1,\"records\":[{\"bizType\":1,\"createBy\":1428975711003615234,\"createTime\":\"2021-08-21T17:46:05\",\"delFlag\":0,\"description\":\"首席COO\",\"enabled\":1,\"id\":1429016947643195393,\"name\":\"首席COO\",\"tenantCode\":\"AOLIN\",\"updateBy\":1428975711003615234,\"updateTime\":\"2021-08-30T18:25:55\"}],\"searchCount\":true,\"size\":10,\"total\":1},\"msg\":\"SUCESS\",\"success\":true}', 1, '岗位模块-分页查询', 'AOLIN', 1428975711003615234, '2025-05-02 21:12:53');
+INSERT INTO `base_opt_log` VALUES (1918512355986898946, '未登录', 2, 100, '0:0:0:0:0:0:0:1', '', 'pc-tenant', '/auth/token', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'POST', '[{\"grantType\":\"password\",\"password\":\"123456\",\"username\":\"admin\"}]', '{\"code\":200,\"data\":{\"expiration\":\"2025-05-03T23:45:56.593\",\"expire\":43200,\"identityId\":1428975711003615234,\"refreshToken\":\"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiIxNDI4OTc1NzExMDAzNjE1MjM0IiwiaWF0IjoxNzQ2MjQzOTU2LCJuYmYiOjE3NDYyNDM5NTYsImV4cCI6MTc0NjI4NzE1Nn0.ffRLXfdjQ6QoaqThecW0mkjC9WdI8CYggb-0qSqT_Us\",\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50SWQiOiIxNDI4OTc1NzExMDAzNjE1MjMzIiwiaWRlbnRpdHlUeXBlIjoiMTAiLCJkZXB0SWQiOiIxNDI4OTc1NzEwNzgxMzE3MTIxIiwidGVuYW50Q29kZSI6IkFPTElOIiwiZGF0YVNjb3BlIjoiMSIsInVzZXJJZCI6IjE0Mjg5NzU3MTEwMDM2MTUyMzQiLCJkZXB0Q29kZSI6IkEwMDEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzQ2MjQzOTU2LCJuYmYiOjE3NDYyNDM5NTYsImV4cCI6MTc0NjI4NzE1Nn0.05l4k5aVQAHmBjjWmbjOVMlyEgCQ2fAEP9DxdoFCia4\"},\"msg\":\"SUCESS\",\"success\":true}', 1, '认证服务-登录接口', 'AOLIN', -1, '2025-05-03 11:45:48');
+
+-- ----------------------------
+-- Table structure for tr_menu_template
+-- ----------------------------
+DROP TABLE IF EXISTS `tr_menu_template`;
+CREATE TABLE `tr_menu_template`  (
+  `id` bigint(20) NOT NULL COMMENT '主键id',
+  `template_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '模版名称',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '租户菜单模版表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tr_menu_template
+-- ----------------------------
+INSERT INTO `tr_menu_template` VALUES (1427515595465273346, '试用版菜单', '试用版菜单模板', NULL, '2021-08-17 14:20:14', 1422081192391876609, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template` VALUES (1427567543950348289, '测试模板', '没有说明', 1422081192391876609, '2021-08-17 17:46:40', 1422081192391876609, '2021-08-17 19:34:39', 1);
+INSERT INTO `tr_menu_template` VALUES (1427600030533419010, '测试', '1231244', 1422081192391876609, '2021-08-17 19:55:45', NULL, '2021-08-17 19:55:45', 1);
+INSERT INTO `tr_menu_template` VALUES (1427600270367916033, '基础版菜单', '基础版菜单模板', 1422081192391876609, '2021-08-17 19:56:43', 1428975711003615234, '2021-08-23 15:46:27', 0);
+INSERT INTO `tr_menu_template` VALUES (1427600373719760898, 'VIP版菜单', 'VIP版菜单模板', 1422081192391876609, '2021-08-17 19:57:07', 1422081192391876609, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template` VALUES (1427600447342379009, '尊贵版菜单', '尊贵版菜单模板', 1422081192391876609, '2021-08-17 19:57:25', 1428975711003615234, '2021-08-27 21:20:32', 0);
+
+-- ----------------------------
+-- Table structure for tr_menu_template_ref
+-- ----------------------------
+DROP TABLE IF EXISTS `tr_menu_template_ref`;
+CREATE TABLE `tr_menu_template_ref`  (
+  `id` bigint(20) NOT NULL COMMENT '主键id',
+  `menu_template_id` bigint(32) NOT NULL COMMENT '模版id',
+  `menu_id` bigint(32) NOT NULL COMMENT '菜单id',
+  `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '租户菜单关联表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tr_menu_template_ref
+-- ----------------------------
+INSERT INTO `tr_menu_template_ref` VALUES (1427594720238473218, 1427567543950348289, 1426094805117136897, 1422081192391876609, '2021-08-17 19:34:39', NULL, '2021-08-17 19:34:39', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427594720238473219, 1427567543950348289, 1426095114551914497, 1422081192391876609, '2021-08-17 19:34:39', NULL, '2021-08-17 19:34:39', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427594720238473220, 1427567543950348289, 1426107420987977729, 1422081192391876609, '2021-08-17 19:34:39', NULL, '2021-08-17 19:34:39', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427594720238473221, 1427567543950348289, 1426119162661007362, 1422081192391876609, '2021-08-17 19:34:39', NULL, '2021-08-17 19:34:39', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427594720238473222, 1427567543950348289, 1426107223339790337, 1422081192391876609, '2021-08-17 19:34:39', NULL, '2021-08-17 19:34:39', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427594720238473223, 1427567543950348289, 1426119525879345154, 1422081192391876609, '2021-08-17 19:34:39', NULL, '2021-08-17 19:34:39', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427594720238473224, 1427567543950348289, 1426119933787992065, 1422081192391876609, '2021-08-17 19:34:39', NULL, '2021-08-17 19:34:39', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956417, 1427600030533419010, 1426102200929185793, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956418, 1427600030533419010, 1426103884690583553, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956419, 1427600030533419010, 1426104051200258050, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956420, 1427600030533419010, 1409812127615033346, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956421, 1427600030533419010, 1410055736960593922, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956422, 1427600030533419010, 1417342905504825346, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956423, 1427600030533419010, 1417342580106526721, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956424, 1427600030533419010, 1417342661400526850, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956425, 1427600030533419010, 1417342721400045569, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956426, 1427600030533419010, 1417342817822900225, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956427, 1427600030533419010, 1410053238946377730, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956428, 1427600030533419010, 1417342905504825343, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956429, 1427600030533419010, 1417342580106526722, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956430, 1427600030533419010, 1417342661400526853, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956431, 1427600030533419010, 1417342721400045563, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956432, 1427600030533419010, 1417342817822900222, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956433, 1427600030533419010, 1409821484801171457, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956434, 1427600030533419010, 1417342905204825323, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956435, 1427600030533419010, 1417342580206526122, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956436, 1427600030533419010, 1417342661200526153, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956437, 1427600030533419010, 1417342721200045513, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956438, 1427600030533419010, 1417342817222900212, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956439, 1427600030533419010, 1410056095665860610, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956440, 1427600030533419010, 1417342905204825343, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956441, 1427600030533419010, 1417342580206526722, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956442, 1427600030533419010, 1417342661200526853, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956443, 1427600030533419010, 1417342721200045563, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1427600031904956444, 1427600030533419010, 1417342817222900222, 1422081192391876609, '2021-08-17 19:55:46', NULL, '2021-08-17 19:55:46', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045249, 1427515595465273346, 1426102200929185793, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045250, 1427515595465273346, 1426103884690583553, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045251, 1427515595465273346, 1426104051200258050, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045252, 1427515595465273346, 1409812127615033346, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045253, 1427515595465273346, 1410055736960593922, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045254, 1427515595465273346, 1417342905504825346, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045255, 1427515595465273346, 1417342580106526721, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045256, 1427515595465273346, 1417342661400526850, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045257, 1427515595465273346, 1417342721400045569, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045258, 1427515595465273346, 1417342817822900225, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045259, 1427515595465273346, 1410053238946377730, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045260, 1427515595465273346, 1417342905504825343, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045261, 1427515595465273346, 1417342580106526722, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045262, 1427515595465273346, 1417342661400526853, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045263, 1427515595465273346, 1417342721400045563, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045264, 1427515595465273346, 1417342817822900222, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045265, 1427515595465273346, 1409821484801171457, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045266, 1427515595465273346, 1417342905204825323, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045267, 1427515595465273346, 1417342580206526122, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045268, 1427515595465273346, 1417342661200526153, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045269, 1427515595465273346, 1417342721200045513, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045270, 1427515595465273346, 1417342817222900212, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045271, 1427515595465273346, 1410056095665860610, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045272, 1427515595465273346, 1417342905204825343, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045273, 1427515595465273346, 1417342580206526722, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045274, 1427515595465273346, 1417342661200526853, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045275, 1427515595465273346, 1417342721200045563, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045276, 1427515595465273346, 1417342817222900222, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045277, 1427515595465273346, 100, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045278, 1427515595465273346, 101, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045279, 1427515595465273346, 1426094805117136897, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045280, 1427515595465273346, 1426118015510474754, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045281, 1427515595465273346, 1426118150478983170, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568917045282, 1427515595465273346, 1426107420987977729, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568979959809, 1427515595465273346, 1426119162661007362, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568979959810, 1427515595465273346, 1426107223339790337, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568979959811, 1427515595465273346, 1426119525879345154, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1428559568979959812, 1427515595465273346, 1426119933787992065, 1422081192391876609, '2021-08-20 11:28:37', NULL, '2021-08-20 11:28:37', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1429711616328982529, 1427600270367916033, 1426107223339790337, 1428975711003615234, '2021-08-23 15:46:27', NULL, '2021-08-23 15:46:27', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1429711616328982530, 1427600270367916033, 1426119525879345154, 1428975711003615234, '2021-08-23 15:46:27', NULL, '2021-08-23 15:46:27', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1429711616328982531, 1427600270367916033, 1426119933787992065, 1428975711003615234, '2021-08-23 15:46:27', NULL, '2021-08-23 15:46:27', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1429711616328982532, 1427600270367916033, 1429710304094720001, 1428975711003615234, '2021-08-23 15:46:27', NULL, '2021-08-23 15:46:27', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1429711616328982533, 1427600270367916033, 1429711095580856321, 1428975711003615234, '2021-08-23 15:46:27', NULL, '2021-08-23 15:46:27', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244398546946, 1427600447342379009, 1426102200929185793, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244482433026, 1427600447342379009, 1426103884690583553, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244486627330, 1427600447342379009, 1426104051200258050, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244486627331, 1427600447342379009, 1409812127615033346, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244490821633, 1427600447342379009, 1410055736960593922, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244490821634, 1427600447342379009, 1417342905504825346, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244495015938, 1427600447342379009, 1417342580106526721, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244495015939, 1427600447342379009, 1417342661400526850, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244499210241, 1427600447342379009, 1417342721400045569, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244499210242, 1427600447342379009, 1417342817822900225, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244499210243, 1427600447342379009, 1410053238946377730, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244503404545, 1427600447342379009, 1417342905504825343, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244503404546, 1427600447342379009, 1417342580106526722, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244507598850, 1427600447342379009, 1417342661400526853, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244507598851, 1427600447342379009, 1417342721400045563, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244511793154, 1427600447342379009, 1417342817822900222, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244520181762, 1427600447342379009, 1409821484801171457, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244524376066, 1427600447342379009, 1417342905204825323, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244528570370, 1427600447342379009, 1417342580206526122, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244528570371, 1427600447342379009, 1417342661200526153, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244532764673, 1427600447342379009, 1417342721200045513, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244536958978, 1427600447342379009, 1417342817222900212, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244536958979, 1427600447342379009, 1410056095665860610, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244541153281, 1427600447342379009, 1417342905204825343, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244541153282, 1427600447342379009, 1417342580206526722, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244545347586, 1427600447342379009, 1417342661200526853, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244549541889, 1427600447342379009, 1417342721200045563, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244549541890, 1427600447342379009, 1417342817222900222, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244553736193, 1427600447342379009, 100, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244553736194, 1427600447342379009, 101, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244557930498, 1427600447342379009, 1426094805117136897, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244562124801, 1427600447342379009, 1428888183558926337, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244562124802, 1427600447342379009, 1426118015510474754, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244562124803, 1427600447342379009, 1426118150478983170, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244566319106, 1427600447342379009, 1426107420987977729, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244566319107, 1427600447342379009, 1430801075510300673, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244570513410, 1427600447342379009, 1426119162661007362, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244570513411, 1427600447342379009, 1430801075510300674, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244574707713, 1427600447342379009, 1430801075510300679, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244578902017, 1427600447342379009, 1430801075510300678, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244578902018, 1427600447342379009, 1430801075510300677, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244583096321, 1427600447342379009, 1430801075510300676, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244587290626, 1427600447342379009, 1430801075510300675, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244591484929, 1427600447342379009, 1426107223339790337, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244591484930, 1427600447342379009, 1426119525879345154, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244595679233, 1427600447342379009, 1426119933787992065, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244595679234, 1427600447342379009, 1429710304094720001, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244599873537, 1427600447342379009, 1429711095580856321, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1431245244599873538, 1427600447342379009, 1429714990549962754, 1428975711003615234, '2021-08-27 21:20:32', NULL, '2021-08-27 21:20:32', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441267322882, 1427600373719760898, 1409812127615033346, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441267322883, 1427600373719760898, 1410055736960593922, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441267322884, 1427600373719760898, 1417342905504825346, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441267322885, 1427600373719760898, 1417342580106526721, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441267322886, 1427600373719760898, 1417342661400526850, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441267322887, 1427600373719760898, 1417342721400045569, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441267322888, 1427600373719760898, 1417342817822900225, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683009, 1427600373719760898, 1410053238946377730, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683010, 1427600373719760898, 1417342905504825343, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683011, 1427600373719760898, 1417342580106526722, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683012, 1427600373719760898, 1417342661400526853, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683013, 1427600373719760898, 1417342721400045563, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683014, 1427600373719760898, 1417342817822900222, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683015, 1427600373719760898, 1409821484801171457, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683016, 1427600373719760898, 1417342905204825323, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683017, 1427600373719760898, 1417342580206526122, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683018, 1427600373719760898, 1417342661200526153, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683019, 1427600373719760898, 1417342721200045513, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683020, 1427600373719760898, 1417342817222900212, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683021, 1427600373719760898, 1410056095665860610, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683022, 1427600373719760898, 1417342905204825343, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683023, 1427600373719760898, 1417342580206526722, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683024, 1427600373719760898, 1417342661200526853, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683025, 1427600373719760898, 1417342721200045563, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+INSERT INTO `tr_menu_template_ref` VALUES (1432643441296683026, 1427600373719760898, 1417342817222900222, 1422081192391876609, '2021-08-31 17:56:28', NULL, '2021-08-31 17:56:28', 0);
+
+-- ----------------------------
+-- Table structure for tr_tenant
+-- ----------------------------
+DROP TABLE IF EXISTS `tr_tenant`;
+CREATE TABLE `tr_tenant`  (
+  `id` bigint(20) NOT NULL COMMENT '主键id',
+  `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
+  `tenant_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户名称',
+  `begin_date` datetime(0) NULL DEFAULT NULL COMMENT '开始时间',
+  `end_date` datetime(0) NULL DEFAULT NULL COMMENT '结束时间',
+  `status` int(1) NULL DEFAULT 1 COMMENT '状态(0-禁用1-启用)',
+  `menu_template_id` bigint(20) NULL DEFAULT NULL COMMENT '菜单模板id',
+  `identity_id` bigint(20) NULL DEFAULT NULL COMMENT '身份id',
+  `level` tinyint(1) NULL DEFAULT NULL COMMENT '等级(10-试用版;20-基础版;30-VIP版;40-尊贵版)',
+  `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '多租户信息表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tr_tenant
+-- ----------------------------
+INSERT INTO `tr_tenant` VALUES (1, 'HDDC', '黄大地产', '2021-08-14 19:41:59', '2021-12-30 19:42:03', 1, 1427600447342379009, 1422081192391876609, 40, NULL, '2021-07-06 23:18:51', 1422081192391876609, '2021-08-18 18:35:35', 0);
+INSERT INTO `tr_tenant` VALUES (1428660731968507906, 'TEST', '测试租户', '2021-08-20 00:00:00', '2021-08-20 00:00:00', 1, 1427600447342379009, 1428660713102536706, 40, 1422081192391876609, '2021-08-20 18:10:36', NULL, '2021-08-20 18:10:36', 0);
+INSERT INTO `tr_tenant` VALUES (1428975711070838786, 'AOLIN', '奥林·云溪海棠', '2021-08-20 00:00:00', '2029-08-31 00:00:00', 1, 1427600447342379009, 1428975711003615234, 30, 1422081192391876609, '2021-08-21 15:02:13', NULL, '2021-08-21 15:02:13', 0);
+
 -- ----------------------------
 -- Table structure for ucpm_account
 -- ----------------------------
@@ -11,7 +315,7 @@ CREATE TABLE `ucpm_account`  (
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '账户状态(0-禁用1-启用,如果账号被禁用,账号所关联所有身份将无法登录)',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -54,7 +358,7 @@ CREATE TABLE `ucpm_client`  (
   `auth_grant_types` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '授权方式(password,refresh_token,mobile,openId)等',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '账户状态(0-禁用1-启用)',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -86,7 +390,7 @@ CREATE TABLE `ucpm_depart`  (
   `system_default` tinyint(1) NULL DEFAULT 0 COMMENT '系统默认数据(0-可操作,1-不可操作)',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -128,7 +432,7 @@ CREATE TABLE `ucpm_identity_depart_ref`  (
   `dept_type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '关联部门类型(1-主部门，2-兼职部门)',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -184,7 +488,7 @@ CREATE TABLE `ucpm_identity_employee`  (
   `system_default` tinyint(1) NULL DEFAULT 0 COMMENT '系统默认数据(0-可操作,1-不可操作)',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -226,7 +530,7 @@ CREATE TABLE `ucpm_identity_position_ref`  (
   `position_id` bigint(20) NULL DEFAULT NULL COMMENT '岗位id',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -266,7 +570,7 @@ CREATE TABLE `ucpm_interface`  (
   `interface_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '接口路径',
   `method` tinyint(1) NOT NULL DEFAULT 0 COMMENT '请求方式(0-GET,1-POST,2-PUT,3-DELETE)',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -314,7 +618,7 @@ CREATE TABLE `ucpm_menu`  (
   `module` tinyint(1) NULL DEFAULT NULL COMMENT '模块(可作为端区分,管理端/H5等)',
   `enabled` tinyint(1) NULL DEFAULT 1 COMMENT '启用标识(1-正常,0-禁用)',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -381,7 +685,7 @@ CREATE TABLE `ucpm_menu_interface_ref`  (
   `menu_id` bigint(20) NOT NULL COMMENT '菜单ID',
   `interface_id` bigint(32) NOT NULL COMMENT '权限ID',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -423,7 +727,7 @@ CREATE TABLE `ucpm_position`  (
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `enabled` tinyint(1) NOT NULL DEFAULT 1 COMMENT '启用标识(1-正常,0-禁用)',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -460,7 +764,7 @@ CREATE TABLE `ucpm_relation_role`  (
   `relation_id` bigint(20) NULL DEFAULT NULL COMMENT '关联id',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -517,7 +821,7 @@ CREATE TABLE `ucpm_role`  (
   `system_default` tinyint(1) NULL DEFAULT 0 COMMENT '系统默认数据(0-可操作,1-不可操作)',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -554,7 +858,7 @@ CREATE TABLE `ucpm_role_group`  (
   `system_default` tinyint(1) NULL DEFAULT 0 COMMENT '系统默认数据(0-可操作,1-不可操作)',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -585,7 +889,7 @@ CREATE TABLE `ucpm_role_menu_ref`  (
   `role_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色id',
   `tenant_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '租户编码',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -2815,7 +3119,7 @@ CREATE TABLE `ucpm_version`  (
   `version` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '版本',
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(1) NULL DEFAULT 0 COMMENT '删除状态(0-正常,1-已删除)',
@@ -2827,3 +3131,4 @@ CREATE TABLE `ucpm_version`  (
 -- ----------------------------
 INSERT INTO `ucpm_version` VALUES (1431194227035459586, '功能优化', 'V1.1.1', '常规功能优化', NULL, '2021-08-27 17:57:48', 1428975711003615234, '2021-08-30 10:01:02', 0);
 
+SET FOREIGN_KEY_CHECKS = 1;
