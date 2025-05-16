@@ -51,14 +51,14 @@ public class IdentityFilter extends BaseFilter {
             if (StrUtil.isBlank(token)) {
                 throw new LibraException(GatewayExceptionCode.TOKEN_EMPTY);
             }
-            JwtUserInfo authInfo = authUtil.getAuthInfo(token);
-            Optional.ofNullable(authInfo).orElseThrow(() -> new LibraException(GatewayExceptionCode.TOKEN_INVALID));
-            headers.put(HeaderCode.ACCOUNT_ID, String.valueOf(authInfo.getAccountId()));
-            headers.put(HeaderCode.IDENTITY_ID, String.valueOf(authInfo.getIdentityId()));
-            headers.put(HeaderCode.DEPT_ID, String.valueOf(authInfo.getDeptId()));
-            headers.put(HeaderCode.DEPT_CODE, authInfo.getDeptCode());
-            headers.put(HeaderCode.USERNAME, authInfo.getUsername());
-            headers.put(HeaderCode.DATA_SCOPE, String.valueOf(authInfo.getDeptCode()));
+//            JwtUserInfo authInfo = authUtil.getAuthInfo(token);
+//            Optional.ofNullable(authInfo).orElseThrow(() -> new LibraException(GatewayExceptionCode.TOKEN_INVALID));
+//            headers.put(HeaderCode.ACCOUNT_ID, String.valueOf(authInfo.getAccountId()));
+//            headers.put(HeaderCode.IDENTITY_ID, String.valueOf(authInfo.getIdentityId()));
+//            headers.put(HeaderCode.DEPT_ID, String.valueOf(authInfo.getDeptId()));
+//            headers.put(HeaderCode.DEPT_CODE, authInfo.getDeptCode());
+//            headers.put(HeaderCode.USERNAME, authInfo.getUsername());
+//            headers.put(HeaderCode.DATA_SCOPE, String.valueOf(authInfo.getDeptCode()));
         }
 
         headers.put(HeaderCode.IDENTITY_TYPE, identityType);

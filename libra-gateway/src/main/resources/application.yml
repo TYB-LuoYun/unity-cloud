@@ -17,12 +17,19 @@ spring:
             - Path=/api/ucpm/** #断言，路径相匹配的进行路由
           filters:
             - StripPrefix=1
-        - id: auth # 认证授权服务
-          uri: lb://libra-auth #匹配后提供服务的路由地址
+
+        - id: ucpm-auth-route
+          uri: lb://libra-ucpm
           predicates:
-            - Path=/api/auth/**  #断言，路径相匹配的进行路由
+            - Path=/api/auth/**
           filters:
-            - StripPrefix=1
+            - RewritePath=/api/auth/(?<segment>.*), /ucpm/${segment}
+#        - id: auth # 认证授权服务
+#          uri: lb://libra-auth #匹配后提供服务的路由地址
+#          predicates:
+#            - Path=/api/auth/**  #断言，路径相匹配的进行路由
+#          filters:
+#            - StripPrefix=1
         - id: gen #代码生成服务
           uri: lb://libra-gen #匹配后提供服务的路由地址
           predicates:
