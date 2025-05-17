@@ -33,7 +33,7 @@ public class PwdCaptchaStrategy extends AbstractTokenGranter {
             throw new LibraException(AuthExceptionCode.PASSWORD_ERROR);
         }
         // 查询身份信息
-        IdentityInfoVo identityInfoVo = FeignResponseUtil.getThrow(accountServiceClient.selectIdentityInfo(accountVo.getAccountId()));
+        IdentityInfoVo identityInfoVo =  accountIdentityService.selectById(accountVo.getAccountId());
         // 身份不存在，直接返回
         Optional.ofNullable(identityInfoVo).orElseThrow(()-> new LibraException(AuthExceptionCode.IDENTITY_INEXISTENCE));
         // 身份被禁用

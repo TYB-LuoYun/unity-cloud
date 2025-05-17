@@ -145,7 +145,7 @@ public class SpringContextUtils implements ApplicationContextAware {
         HttpServletRequest httpServletRequest = getHttpServletRequest();
         String identityId = Objects.isNull(httpServletRequest) ? get(HeaderCode.IDENTITY_ID) : httpServletRequest.getHeader(HeaderCode.IDENTITY_ID);
         //默认系统租户
-        return null == identityId ? 10 :  Long.parseLong(identityId);
+        return null == identityId ? -1 :  Long.parseLong(identityId);
     }
 
     /**

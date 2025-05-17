@@ -9,6 +9,9 @@ import cn.hfbin.common.core.api.ServiceCode;
  */
 public enum UcPmExceptionCode implements ServiceCode {
 
+    TOKEN_INVALID(5020,"token失效"),
+    TOKEN_EMPTY(5021,"token不能为空"),
+
 
     // 公共编码
     SYSTEM_DEFAULT_DELETE(1000,"系统默认数据无法删除"),

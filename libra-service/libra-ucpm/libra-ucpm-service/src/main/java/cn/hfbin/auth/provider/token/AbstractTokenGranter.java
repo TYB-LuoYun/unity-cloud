@@ -22,6 +22,10 @@ import cn.hfbin.ucpm.entity.TrTenant;
 import cn.hfbin.ucpm.enums.AccountStatusEnum;
 import cn.hfbin.ucpm.params.AccountIdentityQueryParams;
 import cn.hfbin.ucpm.params.LoginParams;
+import cn.hfbin.ucpm.service.AccountIdentityService;
+import cn.hfbin.ucpm.service.AccountService;
+import cn.hfbin.ucpm.service.ClientService;
+import cn.hfbin.ucpm.service.TrTenantService;
 import cn.hfbin.ucpm.vo.AccountVo;
 import cn.hfbin.ucpm.vo.IdentityInfoVo;
 import lombok.extern.slf4j.Slf4j;
@@ -49,15 +53,19 @@ public abstract class AbstractTokenGranter implements TokenGranterStrategy {
     private Long expire;
 
     @Autowired
-    protected AccountServiceClient accountServiceClient;
+    protected AccountIdentityService accountIdentityService ;
+
     @Autowired
-    protected ClientServiceClient clientServiceClient;
-    @Autowired
-    protected TrTenantServiceClient trTenantServiceClient;
+    protected TrTenantService trTenantService ;
     @Autowired
     protected RedisUtil redisUtil;
     @Autowired
     protected AuthUtil authUtil;
+
+
+
+    @Autowired
+    private ClientService clientService;
 
     public void publicCheck(){
         // 校验身份类型是在定义范围内
@@ -82,7 +90,7 @@ public abstract class AbstractTokenGranter implements TokenGranterStrategy {
         AccountIdentityQueryParams params = new AccountIdentityQueryParams();
         params.setUsername(loginParams.getUsername());
         params.setMobile(loginParams.getMobile());
-        AccountVo accountIdentityVo = FeignResponseUtil.get(accountServiceClient.selectAccount(params));
+        AccountVo accountIdentityVo =  accountIdentityService.selectAccount(params);
         // 账号不存在
         Optional.ofNullable(accountIdentityVo).orElseThrow(()->new LibraException(AuthExceptionCode.ACCOUNT_IDENTITY_IS_NULL));
         // 账号被禁用
@@ -122,7 +130,8 @@ public abstract class AbstractTokenGranter implements TokenGranterStrategy {
      * 校验当前客户端请求过来是否可用
      */
     private void clientCheck(){
-        Client client = FeignResponseUtil.get(clientServiceClient.selectByCode(SpringContextUtils.getClientCode()));
+
+        Client client = clientService.selectByCode(SpringContextUtils.getClientCode());
         Optional.ofNullable(client).orElseThrow(()->new LibraException(AuthExceptionCode.CLIENT_CODE_ERROR));
     }
 
@@ -130,7 +139,7 @@ public abstract class AbstractTokenGranter implements TokenGranterStrategy {
      * 校验当前租户是否可用
      */
     private void tenantCheck(){
-        TrTenant trTenant = FeignResponseUtil.get(trTenantServiceClient.selectByCode(SpringContextUtils.getTenantCode()));
+        TrTenant trTenant =  trTenantService.selectByCode(SpringContextUtils.getTenantCode());
         Optional.ofNullable(trTenant).orElseThrow(()->new LibraException(AuthExceptionCode.TENANT_CODE_ERROR));
         LocalDateTime now = LocalDateTime.now();
         if(!(trTenant.getBeginDate() != null && trTenant.getBeginDate().isBefore(now)
