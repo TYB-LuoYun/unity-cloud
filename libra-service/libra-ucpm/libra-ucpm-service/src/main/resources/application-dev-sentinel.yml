@@ -1,7 +1,7 @@
 feign:
   # Sentinel 对 Feign 的支持开启
   sentinel:
-    enabled: true
+    enabled: false
 spring:
   cloud:
     sentinel:

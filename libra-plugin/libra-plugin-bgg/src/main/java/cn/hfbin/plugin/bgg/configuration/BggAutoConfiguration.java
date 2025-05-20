@@ -36,6 +36,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date: 2021/10/14
  */
 @Configuration
+@ConditionalOnProperty(value = CommonConstant.LIBRA_BGG_ENABLED, matchIfMissing = true)
 public class BggAutoConfiguration {
 
     @Bean

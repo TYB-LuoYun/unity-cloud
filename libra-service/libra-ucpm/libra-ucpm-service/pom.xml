@@ -37,10 +37,18 @@
 			<artifactId>libra-ucpm-api</artifactId>
 		</dependency>
 
+
 		<dependency>
-			<groupId>cn.hfbin</groupId>
-			<artifactId>libra-plugin-service</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.1</version>
 		</dependency>
+
+
+<!--		<dependency>-->
+<!--			<groupId>cn.hfbin</groupId>-->
+<!--			<artifactId>libra-plugin-service</artifactId>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>cn.hfbin</groupId>
