@@ -15,6 +15,7 @@
         <module>libra-service</module>
         <module>libra-auth</module>
         <module>libra-plugin</module>
+        <module>unity</module>
     </modules>
 
     <properties>

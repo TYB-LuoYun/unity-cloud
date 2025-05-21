@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: libra-ucpm
+  cloud:
+    nacos:
+      # nacos 地址
+      discovery:
+        enabled: true
+        server-addr: http://localhost:8848
+        namespace: ${spring.profiles.active}
+        metadata:
+          version: 1.0
+          service-type: service
+      config:
+#        shared-configs: application.yml
+#        server-addr: 127.0.0.1:8848 # 配置中心地址 nacos server
+#        file-extension: yml # 配置中心的配置后缀
+        #        启动或者关闭nacos
+        enabled: false
+#        group: DEFAULT_GROUP
+libra:
+  # 如果nacos config配置没有配置文件则自动创建文件 默认开启
+  nacos-config-init: false
+  bgg:
+    # 全蓝绿蓝绿灰度发布开启 默认开启
+    enabled: false
+    # 是否开启nacos config动态更新配置 默认开启
+    remote-config:
+      enabled: false

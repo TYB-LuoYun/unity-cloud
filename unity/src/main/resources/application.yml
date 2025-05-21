@@ -1,0 +1,59 @@
+server:
+  port: 7825
+  servlet:
+    context-path: /ucpm
+
+spring:
+  profiles:
+    active: dev
+    include: sentinel
+  main:
+    allow-bean-definition-overriding: true
+
+
+libra:
+  mybatisPlus:
+    ignoreTable: ucpm_datasource_conf,ucpm_interface,ucpm_menu,ucpm_menu_interface_ref,ucpm_version,ucpm_client,base_opt_log,tr_menu_template,tr_menu_template_ref
+    openTenant: true
+  security:
+    enabled: false
+
+logging:
+  level:
+    cn.hfbin: info
+
+# prometheus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+
+
+secure:
+  ignore:
+    urls: #配置白名单路径
+    - "/ucpm/token"
+    - "/*.html"
+    - "/**/*.html"
+    - "/**/*.css"
+    - "/**/*.js"
+    - "/error"
+    - "/doc.html"
+    - "/swagger-ui.html"
+    - "/**/*.svg"
+    - "/public/**"
+    - "/assets/**"
+# 集成微服务的时候需要关掉安全身份验证
+  enable: true
+# 默认的权限验证
+  authority: false
