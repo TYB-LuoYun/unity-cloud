@@ -1,5 +1,6 @@
 package cn.hfbin.auth.interceptor;
 
+import cn.hfbin.auth.context.UserContext;
 import cn.hfbin.common.core.context.HeaderCode;
 import cn.hfbin.common.core.exception.LibraException;
 import cn.hfbin.common.token.AuthUtil;
@@ -90,6 +91,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             /**
              * 从redis中获取
              */
+            UserContext.setUser(authInfo);
             Map<String, String> headers = new HashMap<>();
             headers.put(HeaderCode.ACCOUNT_ID, String.valueOf(authInfo.getAccountId()));
             headers.put(HeaderCode.IDENTITY_ID, String.valueOf(authInfo.getIdentityId()));
@@ -98,6 +100,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             headers.put(HeaderCode.USERNAME, authInfo.getUsername());
             headers.put(HeaderCode.DATA_SCOPE, String.valueOf(authInfo.getDeptCode()));
             ServletUtil.setHeaders((MyRequestWrapper) request,headers);
+
             return true;
         }else{
             throw  new LibraException(UcPmExceptionCode.TOKEN_INVALID);
@@ -153,5 +156,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         //渲染视图之后进行的操作
+        UserContext.clear();
     }
 }

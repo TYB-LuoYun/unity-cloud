@@ -20,7 +20,7 @@ libra:
 
 logging:
   level:
-    cn.hfbin: info
+    cn.hfbin: debug
 
 # prometheus
 management:
@@ -42,6 +42,7 @@ management:
 secure:
   ignore:
     urls: #配置白名单路径
+    - "/ucpm/error"
     - "/ucpm/token"
     - "/*.html"
     - "/**/*.html"
