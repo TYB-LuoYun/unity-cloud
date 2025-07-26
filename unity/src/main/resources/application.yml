@@ -19,8 +19,11 @@ libra:
     enabled: false
 
 logging:
+  config: classpath:logback-spring.xml
   level:
     cn.hfbin: debug
+  file:
+    path: logs/${spring.application.name}
 
 # prometheus
 management:

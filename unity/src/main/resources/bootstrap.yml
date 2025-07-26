@@ -7,7 +7,7 @@ spring:
     nacos:
       # nacos 地址
       discovery:
-        enabled: true
+        enabled: false
         server-addr: http://localhost:8848
         namespace: ${spring.profiles.active}
         metadata:
